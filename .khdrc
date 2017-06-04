@@ -1,0 +1,138 @@
+# sample config for khd
+
+# NOTE(koekeishiya): A bind is written in the form:
+#                   <keysym> [!] [<app list>] [->] : <command>
+#                   where
+#                       <keysym>   = mode + mod + ... + mod - literal
+#
+#                       <keysym>   = mode + mod + ... + mod - keycode
+#                                    keycode must have 0x prefix
+#
+#                       <keysym>   = mode + mod + ... + mod - button#
+#                                    replace '#' with mouse-button id; id >= 3
+#
+#                       modifier only binding
+#                       <keysym>   = mode + mod + ... + mod
+#
+#                       literal only binding
+#                       <keysym>   = - literal
+#
+#                       keycode only binding
+#                       <keysym>   = - keycode
+#
+#                       [<app,
+#                         app,     = optional list '[app1, ..., appN]' of applications
+#                         app>]      that this bind will be activated for. if the
+#                                    focused application is not contained in this list,
+#                                    the associated command will not be triggered, and
+#                                    the keypress will be passed through as normal.
+#
+#                       [!]        = optional operator '!' negates the behaviour when a
+#                                    list of applications is given. this marks the bind
+#                                    as 'Hotkey_Exclude', causing the bind to not work
+#                                    when the focused application is in the given list.
+#
+#                       [->]       = optional operator '->' that marks this bind as
+#                                    'passthrough'. this causes the key to be passed
+#                                    through to the system, instead of being consumed.
+#
+#                       <command>  = command is executed through '$SHELL -c' and
+#                                    follows valid shell syntax. if the $SHELL environment
+#                                    variable is not set, it will default to '/bin/bash'.
+#                                    when bash is used, the ';' delimeter can be specified
+#                                    to chain commands.
+#
+#                                    to allow a command to extend into multiple lines,
+#                                    prepend '\' at the end of the previous line.
+#
+#                                    an EOL character signifies the end of the bind.
+
+# NOTE(koekeishiya) Example of passthrough
+# cmd - m -> : echo "alert and minimize window" | alerter -title Test passthrough -timeout 2
+
+# NOTE(koekeishiya) Example of app list
+# alt - e [
+#           iTerm2,
+#           Terminal,
+#           HyperTerm
+#         ]
+#         : echo "so this is how deep the rabbit hole goes.." |\
+#           alerter -title Test passthrough -timeout 2
+
+# NOTE(koekeishiya) Example of negated app list
+# alt - e [
+#           iTerm2,
+#           Terminal,
+#           HyperTerm
+#         ] !
+#         : echo "blue pill, i choose you!" |\
+#           alerter -title Test passthrough -timeout 2
+
+# NOTE(koekeishiya) Modifier only binding
+# left shift    -> (    right shift   -> )
+# left cmd      -> {    right cmd     -> }
+
+# khd mod_trigger_timeout 0.1
+# lshift : khd -p "shift - 8"
+# rshift : khd -p "shift - 9"
+# lcmd   : khd -p "shift + alt - 8"
+# rcmd   : khd -p "shift + alt - 9"
+
+# NOTE(koekeishiya) Bind mouse-buttons
+# - button3 : khd -w "mouse-button 3 pressed"
+# - button4 : khd -w "mouse-button 4 pressed"
+
+# TODO(koekeishiya): possibly allow combined syntax such as
+# [switcher,ytd] + ctrl - f : khd -e "mode activate default"
+
+# enable kwm compatibility mode
+khd kwm on
+
+# suppress unregistered keybinds outside default mode
+# enabled by default! must be explicitly set to 'off'
+# khd void_unlisted_bind off
+
+# set border color for different modes
+khd mode default color 0xddd5c4a1
+khd mode switcher color 0xddbdd322
+khd mode ytd color 0xddd75f5f
+khd mode swap color 0xdd458588
+khd mode tree color 0xddfabd2f
+khd mode space color 0xddb16286
+khd mode info color 0xddcd950c
+
+rctrl - r            :   khd -e "reload" # reload config
+
+lalt - j            :   kwmc window -f next
+lalt - k            :   kwmc window -f prev
+
+lalt + shift - j                :   kwmc window -s next
+lalt + shift - k                :   kwmc window -s prev
+
+lalt - a               :   kwmc space -t bsp
+lalt - s               :   kwmc space -t monocle
+lalt - d               :   kwmc space -t float
+
+# switch spaces
+lalt - 1            :   kwmc space -fExperimental 1
+lalt - 2            :   kwmc space -fExperimental 2
+lalt - 3            :   kwmc space -fExperimental 3
+lalt - 4            :   kwmc space -fExperimental 4
+lalt - 5            :   kwmc space -fExperimental 5
+lalt - 6            :   kwmc space -fExperimental 6
+
+lalt + shift - 1                :   kwmc window -m space 1
+lalt + shift - 2                :   kwmc window -m space 2
+lalt + shift - 3                :   kwmc window -m space 3
+lalt + shift - 4                :   kwmc window -m space 4
+lalt + shift - 5                :   kwmc window -m space 5
+lalt + shift - 6                :   kwmc window -m space 6
+
+
+lalt - h    :   kwmc space -fExperimental left
+lalt + shift - h    :   kwmc window -m space left;\
+                            kwmc space -fExperimental left
+
+lalt - l    :   kwmc space -fExperimental right
+lalt + shift - l    :   kwmc window -m space right;\
+                            kwmc space -fExperimental right
