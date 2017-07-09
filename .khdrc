@@ -113,9 +113,15 @@ lalt - g               :   open -a "Safari"
 lalt + shift - g       :   open -a "google chrome"
 lalt - return          :   open -a "iTerm"
 
-lalt - t               :   kwmc space -t bsp ; kwmc config focus-follows-mouse on ; kwmc config border focused on
-lalt - m               :   kwmc space -t monocle ; kwmc config focus-follows-mouse off ; kwmc config border focused off
-lalt - f               :   kwmc space -t float ; kwmc config focus-follows-mouse off ; kwmc config border focused off
+lalt - t               :   kwmc space -t bsp
+lalt - m               :   kwmc space -t monocle
+lalt - f               :   kwmc space -t float
+
+# focus mouse follow
+# lalt + minus: off
+# lalt + eq: on
+lalt - 0x18               :   kwmc config focus-follows-mouse on ; kwmc config border focused on
+lalt - 0x1B               :   kwmc config focus-follows-mouse off ; kwmc config border focused off
 
 lalt + shift - c       :  khd -p "cmd - q"
 
