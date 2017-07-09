@@ -120,10 +120,14 @@ lalt - f               :   kwmc space -t float
 # focus mouse follow
 # lalt + minus: off
 # lalt + eq: on
-lalt - 0x18               :   kwmc config focus-follows-mouse on ; kwmc config border focused on
+lalt - 0x18               :   kwmc config focus-follows-mouse on ; kwmc config border focused on ; kwmc config border focused color 0xFFd22121
 lalt - 0x1B               :   kwmc config focus-follows-mouse off ; kwmc config border focused off
 
+# close
 lalt + shift - c       :  khd -p "cmd - q"
+
+# minimize
+lalt - n               :  khd -p "cmd - m"
 
 # switch spaces
 # lalt - 1            :   kwmc space -fExperimental 1
