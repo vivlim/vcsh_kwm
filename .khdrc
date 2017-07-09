@@ -1,4 +1,4 @@
-# sample config for khd
+# viv config for khd
 
 # NOTE(koekeishiya): A bind is written in the form:
 #                   <keysym> [!] [<app list>] [->] : <command>
@@ -101,25 +101,31 @@ khd mode tree color 0xddfabd2f
 khd mode space color 0xddb16286
 khd mode info color 0xddcd950c
 
-rctrl - r            :   khd -e "reload" # reload config
+lctrl + lalt - r            :   khd -e "reload" # reload config
 
 lalt - j            :   kwmc window -f next
 lalt - k            :   kwmc window -f prev
 
-lalt + shift - j                :   kwmc window -s next
+lalt + shift - j                 :   kwmc window -s next
 lalt + shift - k                :   kwmc window -s prev
 
-lalt - a               :   kwmc space -t bsp
-lalt - s               :   kwmc space -t monocle
-lalt - d               :   kwmc space -t float
+lalt - g               :   open -a "Safari"
+lalt + shift - g       :   open -a "google chrome"
+lalt - return          :   open -a "iTerm"
+
+lalt - t               :   kwmc space -t bsp ; kwmc config focus-follows-mouse on
+lalt - m               :   kwmc space -t monocle ; kwmc config focus-follows-mouse off
+lalt - f               :   kwmc space -t float ; kwmc config focus-follows-mouse off
+
+lalt + shift - c       :  khd -p "cmd - q"
 
 # switch spaces
-lalt - 1            :   kwmc space -fExperimental 1
-lalt - 2            :   kwmc space -fExperimental 2
-lalt - 3            :   kwmc space -fExperimental 3
-lalt - 4            :   kwmc space -fExperimental 4
-lalt - 5            :   kwmc space -fExperimental 5
-lalt - 6            :   kwmc space -fExperimental 6
+# lalt - 1            :   kwmc space -fExperimental 1
+# lalt - 2            :   kwmc space -fExperimental 2
+# lalt - 3            :   kwmc space -fExperimental 3
+# lalt - 4            :   kwmc space -fExperimental 4
+# lalt - 5            :   kwmc space -fExperimental 5
+# lalt - 6            :   kwmc space -fExperimental 6
 
 lalt + shift - 1                :   kwmc window -m space 1
 lalt + shift - 2                :   kwmc window -m space 2
@@ -129,10 +135,10 @@ lalt + shift - 5                :   kwmc window -m space 5
 lalt + shift - 6                :   kwmc window -m space 6
 
 
-lalt - h    :   kwmc space -fExperimental left
-lalt + shift - h    :   kwmc window -m space left;\
+#lalt - h    :   kwmc space -fExperimental left
+lalt + shift - left    :   kwmc window -m space left;\
                             kwmc space -fExperimental left
 
-lalt - l    :   kwmc space -fExperimental right
-lalt + shift - l    :   kwmc window -m space right;\
+#lalt - l    :   kwmc space -fExperimental right
+lalt + shift - right    :   kwmc window -m space right;\
                             kwmc space -fExperimental right

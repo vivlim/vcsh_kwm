@@ -46,7 +46,7 @@ kwmc config gap 5 5
 kwmc config tiling bsp
 
 # Automatically float windows that fail to resize
-kwmc config float-non-resizable on
+kwmc config float-non-resizable off
 
 # Automatically resize the window to its container
 kwmc config lock-to-container on
